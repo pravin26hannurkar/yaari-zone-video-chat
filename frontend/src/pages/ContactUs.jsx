@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageCircle, Clock, MapPin } from 'lucide-react';
+import { Mail, MessageCircle, Clock, MapPin, Instagram } from 'lucide-react';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -34,8 +34,15 @@ const ContactUs = () => {
     {
       icon: Mail,
       title: "Email Support",
-      details: "support@yaarizone.com",
+      details: "team.yaarizone@gmail.com",
       description: "General inquiries and support"
+    },
+    {
+      icon: Instagram,
+      title: "Instagram",
+      details: "@yaarizone_app",
+      description: "Follow us for updates",
+      link: "https://www.instagram.com/yaarizone_app/"
     },
     {
       icon: MessageCircle,
@@ -85,7 +92,18 @@ const ContactUs = () => {
                     <info.icon className="text-yaari-purple mt-1" size={24} />
                     <div>
                       <h3 className="text-lg font-semibold mb-1">{info.title}</h3>
-                      <p className="text-yaari-blue font-medium mb-1">{info.details}</p>
+                      {info.link ? (
+                        <a
+                          href={info.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-yaari-blue font-medium hover:underline"
+                        >
+                          {info.details}
+                        </a>
+                      ) : (
+                        <p className="text-yaari-blue font-medium">{info.details}</p>
+                      )}
                       <p className="text-white/70 text-sm">{info.description}</p>
                     </div>
                   </div>

@@ -1,162 +1,146 @@
 # YaariZone Video Chat
 
-A modern, anonymous random video and text chat platform with a neon luxury theme. Built with React, Node.js, Socket.io, and WebRTC for real-time communication.
+An Omegle-style anonymous/random video + text chat web app with a luxurious neon theme. Built with React (Vite) + TailwindCSS for frontend, Node.js + Express + Socket.io for backend, and WebRTC for real-time video communication.
 
-![YaariZone Preview](https://via.placeholder.com/800x400/7F00FF/FFFFFF?text=YaariZone+Video+Chat)
+## Features
 
-## ✨ Features
+- Random pairing for video and text chat
+- Real-time video (WebRTC) and text messaging
+- "Next" to skip connections
+- Responsive neon-luxury UI with glassmorphism and gradient glows
+- Safety features: age-gating, moderation, reporting
+- Production-ready deployment instructions
 
-- **Anonymous Random Matching**: Connect with strangers worldwide instantly
-- **Video & Text Chat**: Real-time video calls with integrated text messaging
-- **Age Verification**: 18+ requirement for video features with secure verification
-- **Safety First**: Comprehensive moderation, reporting, and abuse prevention
-- **Neon Luxury Theme**: Beautiful, modern UI with animated backgrounds
-- **Mobile Responsive**: Works seamlessly on all devices
-- **Peer-to-Peer Video**: Direct WebRTC connections for privacy and performance
-- **Real-time Features**: Typing indicators, connection status, and more
+## Project Structure
 
-## 🚀 Quick Start
+```
+yaari-zone-video-chat/
+├── backend/                 # Node.js backend
+│   ├── package.json
+│   ├── server.js
+│   └── .env.example
+├── frontend/                # React frontend
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── index.html
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── VideoChat.jsx
+│   │   │   ├── NotFound.jsx
+│   │   │   ├── PrivacyPolicy.jsx
+│   │   │   ├── TermsOfService.jsx
+│   │   │   ├── CommunityGuidelines.jsx
+│   │   │   ├── ContactUs.jsx
+│   │   │   ├── ReportIssue.jsx
+│   │   │   └── FAQ.jsx
+│   │   └── components/
+│   │       ├── VideoPlayer.jsx
+│   │       ├── ChatBox.jsx
+│   │       ├── Controls.jsx
+│   │       ├── Sidebar.jsx
+│   │       ├── Footer.jsx
+│   │       ├── AnimatedBackground.jsx
+│   │       └── FloatingAvatars.jsx
+├── README.md
+└── TODO.md
+```
+
+## Getting Started
 
 ### Prerequisites
 
-- Node.js 16+ and npm
-- Modern web browser with WebRTC support (Chrome, Firefox, Safari, Edge)
+- Node.js (v16 or higher)
+- npm or yarn
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/yaari-zone-video-chat.git
+   git clone <repository-url>
    cd yaari-zone-video-chat
    ```
 
-2. **Install backend dependencies**
+2. Install backend dependencies:
    ```bash
    cd backend
    npm install
    ```
 
-3. **Install frontend dependencies**
+3. Install frontend dependencies:
    ```bash
    cd ../frontend
    npm install
    ```
 
-4. **Start the backend server**
-   ```bash
-   cd ../backend
-   npm start
-   # Server runs on http://localhost:3000
-   ```
+### Running the Application
 
-5. **Start the frontend development server**
+1. Start the backend server:
    ```bash
-   cd ../frontend
+   cd backend
    npm run dev
-   # Frontend runs on http://localhost:5173
    ```
+   The backend will run on http://localhost:3000
 
-6. **Open your browser** and visit `http://localhost:5173`
-
-## 🏗️ Architecture
-
-### Backend (Node.js + Express + Socket.io)
-- **Real-time Communication**: Socket.io for instant messaging and signaling
-- **Matchmaking**: Queue-based random pairing system
-- **Security**: Age verification, rate limiting, profanity filtering
-- **Moderation**: Reporting system with admin dashboard capabilities
-
-### Frontend (React + Vite + TailwindCSS)
-- **Modern UI**: Responsive design with neon luxury theme
-- **WebRTC Integration**: Peer-to-peer video streaming
-- **State Management**: React hooks for real-time updates
-- **Animations**: Framer Motion for smooth transitions
-
-## 🔧 Configuration
+2. Start the frontend development server:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+   The frontend will run on http://localhost:5173
 
 ### Environment Variables
 
-Create a `.env` file in the backend directory:
+Create a `.env` file in the backend directory with the following variables:
 
-```env
+```
 PORT=3000
-FRONTEND_URL=http://localhost:5173
-ADMIN_API_KEY=your-admin-api-key
-LOG_LEVEL=info
+PUBLIC_URL=http://localhost:3000
+REDIS_URL=redis://localhost:6379  # Optional, for production scaling
 ```
 
-### WebRTC Configuration
+## Contact Information
 
-For production deployment, configure TURN servers for NAT traversal:
+- **Email:** team.yaarizone@gmail.com
+- **Instagram:** [@yaarizone_app](https://www.instagram.com/yaarizone_app/)
 
-```env
-TURN_SERVER_URL=turn:your-turn-server.com:3478
-TURN_USERNAME=your-turn-username
-TURN_PASSWORD=your-turn-password
-```
-
-## 📱 Usage
-
-1. **Home Page**: Enter optional nickname and verify age (18+ required for video)
-2. **Queue**: Join the matchmaking queue
-3. **Chat**: Once matched, use video controls and text chat
-4. **Safety**: Report inappropriate behavior or find next match
-5. **Support**: Access FAQ, contact form, and community guidelines
-
-## 🛡️ Safety & Moderation
-
-- **Age Gating**: Strict 18+ verification for video features
-- **Content Filtering**: Real-time profanity detection
-- **Reporting System**: Easy-to-use reporting with admin review
-- **Rate Limiting**: Prevents spam and abuse
-- **Moderation Tools**: Admin dashboard for managing reports and bans
-
-## 🚀 Deployment
+## Deployment
 
 ### Backend Deployment
-```bash
-# Using Railway, Render, or Heroku
-npm run build
-# Follow platform-specific deployment guides
-```
+
+Deploy the backend to Render, Railway, or Heroku. Ensure HTTPS is enabled for WebRTC.
 
 ### Frontend Deployment
-```bash
-# Using Vercel, Netlify, or similar
-npm run build
-# Deploy the dist/ folder
-```
 
-### Production Considerations
-- Set up TURN servers for WebRTC
-- Configure HTTPS
-- Set up monitoring and logging
-- Implement Redis for scaling (optional)
+Deploy the frontend to Vercel or Netlify. Set the backend URL in environment variables.
 
-## 🤝 Contributing
+### TURN Server
+
+For production, set up a TURN server (e.g., Coturn) to handle NAT traversal for WebRTC.
+
+## Security & Moderation
+
+- Age gating: Users under 18 are blocked from video sections
+- Real-time moderation: Profanity and nudity detection
+- Reporting system for abusive behavior
+- Rate limiting and abuse prevention
+
+## Legal & Ethical Considerations
+
+- Respect user privacy with ephemeral streams
+- Implement safe defaults for moderation
+- Comply with local laws regarding online communication
+
+## Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Built with modern web technologies
-- Inspired by the need for safe, anonymous online connections
-- Special thanks to the open-source community
-
-## 📞 Support
-
-- **Email**: support@yaarizone.com
-- **Issues**: [GitHub Issues](https://github.com/yourusername/yaari-zone-video-chat/issues)
-- **Documentation**: See our [FAQ](https://yaarizone.com/faq) and [Community Guidelines](https://yaarizone.com/guidelines)
-
----
-
-**Made with ❤️ for safe and meaningful connections worldwide**
+This project is licensed under the MIT License.

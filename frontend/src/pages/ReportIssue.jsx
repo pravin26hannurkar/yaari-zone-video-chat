@@ -178,10 +178,10 @@ const ReportIssue = () => {
                     For emergencies or immediate safety concerns, contact us directly:
                   </p>
                   <a
-                    href="mailto:emergency@yaarizone.com"
+                    href="mailto:team.yaarizone@gmail.com"
                     className="bg-red-500/20 hover:bg-red-500/30 text-red-400 px-4 py-2 rounded-lg font-medium transition-colors inline-block text-sm"
                   >
-                    emergency@yaarizone.com
+                    team.yaarizone@gmail.com
                   </a>
                 </div>
               </div>
