@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Play, Users, Shield, Zap, Heart, Calendar } from 'lucide-react';
+import { Play, Users, Shield, Zap, Heart, Calendar, Instagram, Mail } from 'lucide-react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import AdBanner from '../components/AdBanner';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -46,65 +47,105 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
-      {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 neon-text">
-          YaariZone
-        </h1>
-        <p className="text-xl md:text-2xl text-white/80 mb-8 font-light">
-          Connect randomly, chat anonymously, experience luxury
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <input
-            type="text"
-            placeholder="Enter nickname (optional)"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            className="neon-input w-full sm:w-64"
-          />
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleStartChat}
-            className="neon-button flex items-center gap-2"
+    <div className="min-h-screen flex flex-col">
+      {/* Header Ad Banner */}
+      <div className="w-full bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <AdBanner slot="1234567890" className="w-full h-24" />
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-20">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 neon-text">
+            YaariZone
+          </h1>
+          <p className="text-xl md:text-2xl text-white/80 mb-8 font-light">
+            Connect randomly, chat anonymously, experience luxury
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            <input
+              type="text"
+              placeholder="Enter nickname (optional)"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+              className="neon-input w-full sm:w-64"
+            />
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleStartChat}
+              className="neon-button flex items-center gap-2"
+            >
+              <Play size={20} />
+              Start Chatting
+            </motion.button>
+          </div>
+        </motion.div>
+
+        {/* Features Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-6xl"
+        >
+          <div className="glass-card p-6 text-center">
+            <Users className="w-12 h-12 text-yaari-purple mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">Random Matching</h3>
+            <p className="text-white/70">Connect with strangers worldwide instantly</p>
+          </div>
+
+          <div className="glass-card p-6 text-center">
+            <Shield className="w-12 h-12 text-yaari-pink mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">Safe & Secure</h3>
+            <p className="text-white/70">Age verification and moderation systems</p>
+          </div>
+
+          <div className="glass-card p-6 text-center">
+            <Zap className="w-12 h-12 text-yaari-blue mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">Lightning Fast</h3>
+            <p className="text-white/70">Real-time video and text communication</p>
+          </div>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex justify-center gap-6 mb-8"
+        >
+          <a
+            href="https://www.instagram.com/yaarizone_app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-card p-4 hover:bg-white/10 transition-colors"
           >
-            <Play size={20} />
-            Start Chatting
-          </motion.button>
-        </div>
-      </motion.div>
+            <Instagram className="text-pink-400" size={24} />
+          </a>
+          <a
+            href="mailto:team.yaarizone@gmail.com"
+            className="glass-card p-4 hover:bg-white/10 transition-colors"
+          >
+            <Mail className="text-yaari-blue" size={24} />
+          </a>
+        </motion.div>
+      </div>
 
-      {/* Features Grid */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-6xl"
-      >
-        <div className="glass-card p-6 text-center">
-          <Users className="w-12 h-12 text-yaari-purple mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Random Matching</h3>
-          <p className="text-white/70">Connect with strangers worldwide instantly</p>
+      {/* Footer Ad Banner */}
+      <div className="w-full bg-black/20 backdrop-blur-sm border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <AdBanner slot="0987654321" className="w-full h-24" />
         </div>
-
-        <div className="glass-card p-6 text-center">
-          <Shield className="w-12 h-12 text-yaari-pink mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Safe & Secure</h3>
-          <p className="text-white/70">Age verification and moderation systems</p>
-        </div>
-
-        <div className="glass-card p-6 text-center">
-          <Zap className="w-12 h-12 text-yaari-blue mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Lightning Fast</h3>
-          <p className="text-white/70">Real-time video and text communication</p>
-        </div>
-      </motion.div>
+      </div>
 
       {/* Age Gate Modal */}
       {showAgeGate && (
@@ -160,7 +201,7 @@ const Home = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-center text-white/60 text-sm"
+        className="text-center text-white/60 text-sm py-8"
       >
         <div className="flex flex-wrap justify-center gap-6 mb-4">
           <a href="/privacy" className="hover:text-yaari-purple transition-colors">Privacy Policy</a>

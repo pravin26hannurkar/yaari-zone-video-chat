@@ -6,6 +6,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import ChatBox from '../components/ChatBox';
 import Controls from '../components/Controls';
 import FloatingAvatars from '../components/FloatingAvatars';
+import AdBanner from '../components/AdBanner';
 
 const VideoChat = () => {
   const location = useLocation();
@@ -261,77 +262,94 @@ const VideoChat = () => {
   };
 
   return (
-    <div className="min-h-screen p-4">
-      <div className="max-w-7xl mx-auto">
-        {!isConnected ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-20"
-          >
-            <h1 className="text-4xl font-bold mb-8 neon-text">Ready to Connect?</h1>
-            <p className="text-white/70 mb-8 text-lg">
-              Join the queue and get matched with someone instantly
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleJoinQueue}
-              className="neon-button text-xl px-8 py-4"
-            >
-              Join Queue
-            </motion.button>
-          </motion.div>
-        ) : !isMatched ? (
-          <div className="flex flex-col items-center justify-center min-h-[60vh]">
-            <FloatingAvatars />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black flex flex-col">
+      {/* Header Ad Banner */}
+      <div className="w-full bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4 py-2">
+          <AdBanner slot="2468135790" className="w-full h-16" />
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-4">
+        <div className="max-w-7xl mx-auto">
+          {!isConnected ? (
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="spinner mb-8"
-            />
-            <h2 className="text-2xl font-semibold mb-4">Finding your match...</h2>
-            <p className="text-white/70">Please wait while we connect you with someone</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Video Section */}
-            <div className="lg:col-span-2 space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <VideoPlayer
-                  stream={localStream}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-20"
+            >
+              <h1 className="text-4xl font-bold mb-8 neon-text">Ready to Connect?</h1>
+              <p className="text-white/70 mb-8 text-lg">
+                Join the queue and get matched with someone instantly
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleJoinQueue}
+                className="neon-button text-xl px-8 py-4"
+              >
+                Join Queue
+              </motion.button>
+            </motion.div>
+          ) : !isMatched ? (
+            <div className="flex flex-col items-center justify-center min-h-[60vh]">
+              <FloatingAvatars />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="spinner mb-8"
+              />
+              <h2 className="text-2xl font-semibold mb-4">Finding your match...</h2>
+              <p className="text-white/70">Please wait while we connect you with someone</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Video Section */}
+              <div className="lg:col-span-2 space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <VideoPlayer
+                    stream={localStream}
+                    isMuted={isMuted}
+                    isCameraOff={isCameraOff}
+                    label="You"
+                  />
+                  <VideoPlayer
+                    stream={remoteStream}
+                    label="Partner"
+                    isRemote={true}
+                  />
+                </div>
+
+                <Controls
+                  onNext={handleNext}
+                  onMute={handleMute}
+                  onCameraToggle={handleCameraToggle}
+                  onReport={handleReport}
                   isMuted={isMuted}
                   isCameraOff={isCameraOff}
-                  label="You"
-                />
-                <VideoPlayer
-                  stream={remoteStream}
-                  label="Partner"
-                  isRemote={true}
                 />
               </div>
 
-              <Controls
-                onNext={handleNext}
-                onMute={handleMute}
-                onCameraToggle={handleCameraToggle}
-                onReport={handleReport}
-                isMuted={isMuted}
-                isCameraOff={isCameraOff}
-              />
+              {/* Chat Section */}
+              <div className="lg:col-span-1">
+                <ChatBox
+                  messages={messages}
+                  onSendMessage={handleSendMessage}
+                  onTyping={handleTyping}
+                  partnerTyping={partnerTyping}
+                />
+              </div>
             </div>
+          )}
+        </div>
+      </div>
 
-            {/* Chat Section */}
-            <div className="lg:col-span-1">
-              <ChatBox
-                messages={messages}
-                onSendMessage={handleSendMessage}
-                onTyping={handleTyping}
-                partnerTyping={partnerTyping}
-              />
-            </div>
-          </div>
-        )}
+      {/* Footer Ad Banner */}
+      <div className="w-full bg-black/20 backdrop-blur-sm border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 py-2">
+          <AdBanner slot="1357924680" className="w-full h-16" />
+        </div>
       </div>
     </div>
   );
