@@ -111,11 +111,30 @@ REDIS_URL=redis://localhost:6379  # Optional, for production scaling
 
 ### Backend Deployment
 
-Deploy the backend to Render, Railway, or Heroku. Ensure HTTPS is enabled for WebRTC.
+**Important Note:** Firebase Hosting only supports static files and cannot host the Node.js backend. The backend must be deployed separately to a platform that supports server-side applications.
+
+Recommended hosting options for the backend:
+- **Render** (recommended for simplicity and free tier)
+- **Railway**
+- **Heroku**
+- **Vercel** (for serverless functions)
+- **AWS EC2** or **Google Cloud Run** (for more control)
+
+Ensure HTTPS is enabled for WebRTC functionality. Follow the deployment guide in `deploy-backend-render.md` for Render-specific instructions.
 
 ### Frontend Deployment
 
-Deploy the frontend to Vercel or Netlify. Set the backend URL in environment variables.
+The frontend has been deployed to Firebase Hosting.
+
+**Firebase Hosting URL:** https://yari-zone.web.app
+
+To deploy updates:
+1. Build the frontend: `cd frontend && npm run build`
+2. Copy build files to public directory: `xcopy frontend\dist\* public\ /Y` (Windows) or `cp -r frontend/dist/* public/` (Linux/Mac)
+3. Copy assets: `xcopy frontend\dist\assets\* public\assets\ /Y` (Windows) or `cp -r frontend/dist/assets/* public/assets/` (Linux/Mac)
+4. Deploy: `firebase deploy --only hosting`
+
+Alternatively, deploy the frontend to Vercel or Netlify. Set the backend URL in environment variables.
 
 ### TURN Server
 
