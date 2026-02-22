@@ -39,7 +39,7 @@ const VideoChat = () => {
 
   useEffect(() => {
     // Initialize socket connection
-    const newSocket = io(process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000');
+    const newSocket = io('http://localhost:3000');
     setSocket(newSocket);
 
     // Age verification
@@ -301,7 +301,32 @@ const VideoChat = () => {
                 className="spinner mb-8"
               />
               <h2 className="text-2xl font-semibold mb-4">Finding your match...</h2>
-              <p className="text-white/70">Please wait while we connect you with someone</p>
+              <p className="text-white/70 mb-8">Please wait while we connect you with someone</p>
+
+              {/* Self Camera Preview */}
+              <div className="flex flex-col items-center">
+                <h3 className="text-lg font-medium mb-4">Your Camera Preview</h3>
+                <VideoPlayer
+                  stream={localStream}
+                  isMuted={isMuted}
+                  isCameraOff={isCameraOff}
+                  label="You"
+                />
+                <div className="flex gap-4 mt-4">
+                  <button
+                    onClick={handleMute}
+                    className={`px-4 py-2 rounded-lg ${isMuted ? 'bg-red-500' : 'bg-green-500'} text-white`}
+                  >
+                    {isMuted ? 'Unmute' : 'Mute'}
+                  </button>
+                  <button
+                    onClick={handleCameraToggle}
+                    className={`px-4 py-2 rounded-lg ${isCameraOff ? 'bg-red-500' : 'bg-green-500'} text-white`}
+                  >
+                    {isCameraOff ? 'Turn On Camera' : 'Turn Off Camera'}
+                  </button>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
